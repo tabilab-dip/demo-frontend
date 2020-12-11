@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
-      <ul>
+      <ul id="mainmenu" className="nav">
         <li>
           <Link to="/sentiment">Sentiment Analysis</Link>
         </li>
@@ -11,7 +11,7 @@ const Navbar = () => {
           <Link to="/morph-parser">Morphological Parsing</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/about">Questions</Link>
         </li>
         <li>
           <Link to="/">Home</Link>

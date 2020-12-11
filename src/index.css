@@ -1,13 +1,303 @@
+/* body { */
+/* margin: 0; */
+/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", */
+/* "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", */
+/* sans-serif; */
+/* -webkit-font-smoothing: antialiased; */
+/* -moz-osx-font-smoothing: grayscale; */
+/* } */
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  width: 100%;
+  min-height: 100%;
+  font: 0.875rem "ralewayregular", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #e2e2df;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.App {
+  text-align: center;
+}
+
+.global-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.global-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.global-logo {
+  display: block;
+  width: 60%;
+  height: auto;
+  float: left;
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+
+#main {
+  width: 100%;
+  background-color: #d8d8cc;
+  height: auto;
+}
+
+#main .leftblock,
+#main .rightblock {
+  width: 100%;
+}
+
+#main .leftblock {
+  margin-bottom: 1em;
+}
+
+#menubar {
+  width: 100%;
+  height: 25px;
+  border-bottom: 1px solid #12295d;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 25px;
+  font-size: 15px;
+  color: #12295d;
+  font-family: "ralewaybold", arial;
+  padding-bottom: 8px;
+}
+#menubar .centerblock {
+  /*background-color: #fff;*/
+}
+#menubar .active::after {
+  background-color: #ff9000 !important;
+}
+#menubar .leftblock {
+  display: none;
+}
+#menubar .rightblock {
+  width: 100%;
+}
+
+#header,
+#content,
+#footer {
+  width: 100%;
+}
+
+#header {
+  padding-top: 10px;
+  z-index: 2;
+  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #c3c3b8;
+}
+#header::after {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: #999991;
+  content: " ";
+  text-indent: -99999em;
+  text-align: left;
+}
+
+.topbanner {
+  width: 100%;
+  background-color: #12295d;
+  height: auto;
+}
+
+.centerblock {
+  max-width: 980px;
+  width: 95%;
+  margin: 0 auto;
+  position: relative;
+}
+.centerblock:after {
+  content: ".";
+  display: block;
+  text-indent: -99999em;
+  clear: both;
+  line-height: 0;
+}
+.leftblock {
+  width: 19.3%; /*190px;*/
+  float: left;
+}
+.rightblock {
+  width: 79%; /*775px;*/
+  float: right;
+  position: relative;
+}
+
+.topmenu,
+.logo {
+  float: none;
+  width: 100%;
+}
+
+.logo {
+  display: block;
+  width: 60%;
+  height: auto;
+  float: left;
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+.logo img {
+  max-width: 100%;
+  width: auto !important;
+  height: auto !important;
+}
+
+.logo a {
+  display: block;
+  padding-top: 9px;
+}
+
+#mainmenu {
+  list-style: none;
+  position: relative;
+  min-height: 24px;
+  padding-left: 5px;
+  margin-left: -5px;
+  background-color: #fff;
+}
+#mainmenu > li {
+  display: block;
+  width: 18%; /*152px;*/
+  float: left;
+  text-align: center;
+  /*padding-left: 3px;  */
+  background-color: #fff;
+  position: relative;
+}
+#mainmenu > li:after {
+  content: ".";
+  display: block;
+  text-indent: -99999em;
+  /* width: 95%; 146px; */
+  width: 95%;
+  height: 2px;
+  margin-top: 7px;
+  margin-left: 2px;
+  background-color: #0fa4dd;
+}
+#mainmenu li ul {
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 12px;
+  line-height: 1.5em;
+  width: 100%;
+  /*border-right: 1px solid #fff;
+  border-left: 1px solid #c9e2ec;*/
+  position: absolute;
+  top: 34px;
+  left: 0;
+  z-index: 99;
+  list-style: none;
+  overflow: hidden;
+  height: 0;
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(50, 50, 50, 0.6);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(50, 50, 50, 0.6);
+  box-shadow: 0px 4px 5px 0px rgba(50, 50, 50, 0.6);
+}
+/*#mainmenu li:last-child ul {
+  border-right: 1px solid #c9e2ec;
+}*/
+#mainmenu li ul::after {
+  content: ".";
+  text-indent: -99999em;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #c9e2ec;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+#mainmenu li ul li:first-child {
+  margin-top: 10px;
+}
+#mainmenu li ul li {
+  text-align: left;
+  font-weight: normal;
+}
+#mainmenu li ul li a {
+  color: #2048a3;
+  font-family: Raleway, "ralewaymedium", Arial, Helvetica, sans-serif;
+  display: block;
+  padding: 0.28em 10px;
+}
+#mainmenu li ul li a:hover {
+  color: #fff;
+  background-color: #2048a3;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--clr-primary-5);
+  color: var(--clr-white);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius);
+  border-color: transparent;
+  text-transform: capitalize;
+  font-size: 1rem;
+  letter-spacing: var(--spacing);
+  margin-top: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--clr-primary-1);
+  color: var(--clr-primary-5);
+}
+
+.form {
+  background: var(--clr-white);
+  max-width: var(--fixed-width);
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
+}
+.form input {
+  background: var(--clr-white);
+  border-color: transparent;
+  border-radius: var(--radius);
+  padding: 0.25rem 0.5rem;
+  max-height: 10rem;
+  height: 5rem;
+}
+.form-control {
+  margin: 0.5rem 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+}
+.form button {
+  display: inline-block;
+  background: var(--clr-black);
+  color: var(--clr-white);
+  border-color: transparent;
+  margin-top: 1rem;
+  letter-spacing: var(--spacing);
+  padding: 0.15rem 0.25rem;
+  text-transform: capitalize;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+/* header, topbanner, centerblock,  logo, menubar, leftblock, rgihtblock, tr, main */
