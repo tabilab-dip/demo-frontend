@@ -3,6 +3,7 @@ import { postQuery } from "./utils";
 import React, { useState, useEffect } from "react";
 import { Select, Form, Input, Button, Checkbox } from "antd";
 import { render } from "@testing-library/react";
+import "./index.css";
 
 const { Option } = Select;
 const SingleQuery = ({ value, onChange, url, example_sents }) => {
@@ -28,18 +29,20 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
     console.log(value);
     setQuery(value);
   };
+  //
   return (
     <>
       <Form {...layout} form={form} name="form" onFinish={handleSubmit}>
         <Form.Item
-          label="Example Sentences"
+          label={
+            <label style={{ fontSize: "15px", fontWeight: "bold" }}>
+              Example Sentences
+            </label>
+          }
           name="example_sents"
           wrapperCol={{ ...layout.wrapperCol, offset: 8 }}
         >
-          <Select
-            value={example_sents[0]}
-            onSelect={(value, event) => tmpChange(value, event)}
-          >
+          <Select onSelect={(value, event) => tmpChange(value, event)}>
             {example_sents.map((sent, id) => {
               return (
                 <Option key={id} value={sent}>
@@ -47,18 +50,23 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
                 </Option>
               );
             })}
-            <Option value={query}>{query}</Option>
           </Select>
         </Form.Item>
         <Form.Item
-          name="query"
-          id="query"
-          type="text"
-          label="Sentence"
-          defaultValue={query || ""}
-          onChange={(e) => setQuery(e.target.value)}
+          label={
+            <label style={{ fontSize: "15px", fontWeight: "bold" }}>
+              Sentence
+            </label>
+          }
         >
-          <Input.TextArea rows={8} />
+          <Input.TextArea
+            name="query"
+            id="query"
+            type="text"
+            rows={8}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
         </Form.Item>
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
           <Button type="primary" htmlType="submit">

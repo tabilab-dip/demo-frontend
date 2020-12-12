@@ -36,12 +36,11 @@ class SideMenu extends Component {
         onCollapse={this.onCollapse}
       >
         <Menu
-          style={{ height: "100%" }}
+          style={{ height: "100%", padding: "150px 0px" }}
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["/"]}
           selectedKeys={[location.pathname]}
-          style={{ padding: "150px 0px" }}
         >
           <Menu.Item key="/sentiment">
             <Link to="/sentiment">Sentiment Analysis</Link>
