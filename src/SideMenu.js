@@ -31,13 +31,13 @@ class SideMenu extends Component {
           position: "fixed",
           left: 0,
         }}
-        collapsible
-        collapsed={collapsed}
-        onCollapse={this.onCollapse}
+        // collapsible
+        // collapsed={collapsed}
+        // onCollapse={this.onCollapse}
       >
         <Menu
           style={{ height: "100%", padding: "150px 0px" }}
-          theme="dark"
+          theme="white"
           mode="inline"
           defaultSelectedKeys={["/"]}
           selectedKeys={[location.pathname]}

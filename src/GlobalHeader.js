@@ -14,7 +14,13 @@ const { Header, Content, Footer, Sider } = Layout;
 const GlobalHeader = () => {
   return (
     <Header
-      style={{ position: "fixed", zIndex: 1, width: "100%", height: "10%" }}
+      style={{
+        position: "fixed",
+        zIndex: 1,
+        width: "100%",
+        height: "10%",
+        padding: "5px 0",
+      }}
     >
       <div className="logo" />
       <img src={logo} alt="App logo" />
