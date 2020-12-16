@@ -26,7 +26,10 @@ const App = () => {
             <SideMenu />
             <Content
               className="site-layout"
-              style={{ padding: "160px 240px", minHeight: "700px" }}
+              style={{
+                padding: "100px 240px",
+                minHeight: "700px",
+              }}
             >
               <Switch>
                 <Route exact path="/" component={Home} />
@@ -37,12 +40,12 @@ const App = () => {
                 <Route path="/ner1" component={Ner} />
                 <Route path="*" component={Home} />
               </Switch>
+              <Footer style={{ textAlign: "center" }}>
+                Tabilab Tools Demo Platform
+              </Footer>
             </Content>
           </Layout>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Tabilab Tools Demo Platform
-        </Footer>
       </Layout>
     </Router>
   );

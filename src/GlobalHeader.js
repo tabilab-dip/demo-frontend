@@ -1,14 +1,9 @@
 import React from "react";
+import "./index.css";
+import "antd/dist/antd.css";
+// TODO change the logo
 import logo from "./assets/images/boun_logo.png";
-import { Layout, Menu, Typography, PageHeader } from "antd";
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from "@ant-design/icons";
-
-const { Title } = Typography;
-const { SubMenu } = Menu;
+import { Layout, Menu } from "antd";
 const { Header, Content, Footer, Sider } = Layout;
 
 const GlobalHeader = () => {
@@ -18,24 +13,11 @@ const GlobalHeader = () => {
         position: "fixed",
         zIndex: 1,
         width: "100%",
-        height: "10%",
-        padding: "5px 0",
       }}
     >
       <div className="logo" />
-      <img src={logo} alt="App logo" />
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={["-1"]}
-        style={{
-          position: "fixed",
-          zIndex: 1,
-          width: "100%",
-          padding: "5px 0px",
-          // float: "right",
-        }}
-      >
+      {/* <img src={logo} alt="App logo" /> */}
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["-1"]}>
         <Menu.Item key="1">
           <a href="/home">Home</a>
         </Menu.Item>

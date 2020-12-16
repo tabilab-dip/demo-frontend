@@ -1,6 +1,6 @@
-import React from "react";
 import $ from "jquery";
 import equal from "fast-deep-equal";
+import React, { useState } from "react";
 
 //TODO: need to fix this later
 const PUBLIC_URL = "http://localhost:3000/";
@@ -9,6 +9,7 @@ class Brat extends React.Component {
   constructor(props) {
     super(props);
     this.updateImage = this.updateImage.bind(this);
+    this.state = { loading: true };
   }
   componentDidMount() {
     const head_script = document.createElement("script");
@@ -21,19 +22,23 @@ class Brat extends React.Component {
     loader_script.type = "text/javascript";
     loader_script.setAttribute("id", "loader_script");
 
-    head_script.onload = function () {
+    head_script.onload = () => {
       document.body.appendChild(loader_script);
     };
 
-    loader_script.onload = this.updateImage.bind(this);
+    loader_script.onload = () => {
+      this.setState({ loading: false });
+      this.updateImage();
+    };
 
     document.head.appendChild(head_script);
   }
 
   componentDidUpdate(prevProps) {
     if (
-      !equal(this.props.coll, prevProps.coll) ||
-      !equal(this.props.doc, prevProps.doc)
+      (!equal(this.props.coll, prevProps.coll) ||
+        !equal(this.props.doc, prevProps.doc)) &&
+      !this.state.loading
     ) {
       this.updateImage();
     }
@@ -42,19 +47,29 @@ class Brat extends React.Component {
   updateImage() {
     let collData = this.props.coll || {};
     let docData = this.props.doc || {};
+
+    console.log("Update Image");
+    console.log(collData);
+    console.log(this.state.loading);
+
+    //window.head.ready(function () {
     window.Util.embed(
       "embedding-entity-example",
       collData,
       docData,
       window.webFontURLs
     );
+    //});
   }
 
-  componentWillUnmount() {}
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
 
-  // shouldComponentUpdate() {
-
-  // }
+  componentWillUnmount() {
+    this.setState({ loading: false });
+    // remove the nodes
+  }
 
   render() {
     return <div id="embedding-entity-example"></div>;

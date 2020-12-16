@@ -27,21 +27,13 @@ class SideMenu extends Component {
         width={200}
         style={{
           overflow: "auto",
-          height: "100vh",
+          height: "90vh",
           position: "fixed",
+          top: "70px",
           left: 0,
         }}
-        // collapsible
-        // collapsed={collapsed}
-        // onCollapse={this.onCollapse}
       >
-        <Menu
-          style={{ height: "100%", padding: "150px 0px" }}
-          theme="white"
-          mode="inline"
-          defaultSelectedKeys={["/"]}
-          selectedKeys={[location.pathname]}
-        >
+        <Menu theme="white" mode="inline">
           <Menu.Item key="/sentiment">
             <Link to="/sentiment">Sentiment Analysis</Link>
           </Menu.Item>
@@ -51,6 +43,114 @@ class SideMenu extends Component {
           <Menu.Item key="/ner1">
             <Link to="/ner1">NER</Link>
           </Menu.Item>
+
+          {/*  */}
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          <Menu.Item key="/ner1">
+            <Link to="/ner1">NER</Link>
+          </Menu.Item>
+          {/*  */}
         </Menu>
       </Sider>
     );
