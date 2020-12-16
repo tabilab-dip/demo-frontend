@@ -25,8 +25,6 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
     onChange(response.result);
   };
   const tmpChange = (value, event) => {
-    console.log(event);
-    console.log(value);
     setQuery(value);
   };
   //

@@ -607,9 +607,9 @@ var Util = (function(window, undefined) {
       fontNotifyList = [dispatcher];
 
       webFontURLs = webFontURLs || [
-        'static/fonts/Astloch-Bold.ttf',
-        'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
-        'static/fonts/Liberation_Sans-Regular.ttf'
+        'http://localhost:3000/brat/static/fonts/Astloch-Bold.ttf',
+        'http://localhost:3000/brat/static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        'http://localhost:3000/brat/static/fonts/Liberation_Sans-Regular.ttf'
       ];
 
       var families = [];
@@ -645,7 +645,7 @@ var Util = (function(window, undefined) {
           console.error('Timeout in loading fonts');
           proceedWithFonts();
         }
-      }, fontLoadTimeout);
+      }, fontLoadTimeout+10000);
     };
 
     var areFontsLoaded = function() {

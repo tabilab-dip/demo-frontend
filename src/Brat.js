@@ -1,5 +1,6 @@
 import $ from "jquery";
 import equal from "fast-deep-equal";
+import "./brat_css/style-vis.css";
 import React, { useState } from "react";
 
 //TODO: need to fix this later
@@ -28,7 +29,7 @@ class Brat extends React.Component {
 
     loader_script.onload = () => {
       this.setState({ loading: false });
-      this.updateImage();
+      // this.updateImage();
     };
 
     document.head.appendChild(head_script);
@@ -67,7 +68,7 @@ class Brat extends React.Component {
   }
 
   componentWillUnmount() {
-    this.setState({ loading: false });
+    this.setState({ loading: true });
     // remove the nodes
   }
 
