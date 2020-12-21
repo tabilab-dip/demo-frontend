@@ -10,12 +10,19 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
   const [form] = Form.useForm();
 
   const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
+    // labelCol: {
+    //   span: 8,
+    // },
+    // wrapperCol: {
+    //   span: 16,
+    // },
+    // label: {
+    //   display: "block",
+    //   fontSize: "100px",
+    // },
+    // input: {
+    //   display: "block",
+    // },
   };
 
   const [query, setQuery] = useState("");
@@ -32,15 +39,18 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
     <>
       <Form {...layout} form={form} name="form" onFinish={handleSubmit}>
         <Form.Item
+          labelCol={{ span: 24 }}
           label={
             <label style={{ fontSize: "15px", fontWeight: "bold" }}>
               Example Sentences
             </label>
           }
           name="example_sents"
-          wrapperCol={{ ...layout.wrapperCol, offset: 8 }}
         >
-          <Select onSelect={(value, event) => tmpChange(value, event)}>
+          <Select
+            onSelect={(value, event) => tmpChange(value, event)}
+            style={{ width: "100%" }}
+          >
             {example_sents.map((sent, id) => {
               return (
                 <Option key={id} value={sent}>
@@ -51,6 +61,7 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
           </Select>
         </Form.Item>
         <Form.Item
+          labelCol={{ span: 24 }}
           label={
             <label style={{ fontSize: "15px", fontWeight: "bold" }}>
               Sentence
@@ -66,7 +77,7 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
             onChange={(e) => setQuery(e.target.value)}
           />
         </Form.Item>
-        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             Run
           </Button>

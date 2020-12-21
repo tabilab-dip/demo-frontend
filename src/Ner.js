@@ -2,6 +2,8 @@ import SingleQuery from "./SingleQuery";
 import React, { useState } from "react";
 import Brat from "./Brat";
 
+const url = "http://lvh.me:4440/evaluate";
+
 const docData = {
   text: "Ed O'Kelley was the man who shot the man who shot Jesse James.",
   entities: [
@@ -27,17 +29,14 @@ const Ner = () => {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
   const example_sents = ["Ali ata bak", "Naber"];
-  const handleAnswerChange = (new_answer) => {
-    setAnswer(new_answer);
-  };
   return (
     // Tool header
     // Tool explanation-body
     <>
       <SingleQuery
-        onChange={handleAnswerChange}
+        onChange={setAnswer}
         value={answer}
-        url="http://lvh.me:4440/evaluate"
+        url={url}
         example_sents={example_sents}
       />
       {/* render only if answer is not undefined; then, block from re-render */}

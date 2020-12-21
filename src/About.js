@@ -8,7 +8,7 @@ import {
 const { Content, Footer } = Layout;
 
 const About = () => {
-  return <Content>Conteasdfasfdsafdasfasfasfasfdasfdnt</Content>;
+  return <Content>Demos of Bogazici Tabilab NLP tools</Content>;
 };
 
 export default About;

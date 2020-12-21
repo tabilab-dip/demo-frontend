@@ -1,10 +1,12 @@
 import React from "react";
 import "./index.css";
 import "antd/dist/antd.css";
+import tr_flag from "./assets/images/tr.svg";
+import en_flag from "./assets/images/gb.svg";
 // TODO change the logo
 import logo from "./assets/images/boun_logo.png";
 import { Layout, Menu } from "antd";
-const { Header, Content, Footer, Sider } = Layout;
+const { Header } = Layout;
 
 const GlobalHeader = () => {
   return (
@@ -44,6 +46,28 @@ const GlobalHeader = () => {
           </a>
         </Menu.Item>
       </Menu>
+      <div
+        className="flag-list"
+        style={{
+          position: "absolute",
+          left: "95%",
+          top: "50%",
+          overflow: "auto",
+          transform: " translate(-50%, -50%)",
+        }}
+      >
+        <img
+          src={tr_flag}
+          // onClick=TODO: change language
+          style={{ height: "25px", width: "35px" }}
+        />
+        <img
+          src={en_flag}
+          // onClick=TODO: change language
+          style={{ height: "25px", width: "35px" }}
+        />
+      </div>
+      ,
     </Header>
   );
 };

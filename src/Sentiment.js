@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { postQuery } from "./utils";
 import React, { useState } from "react";
+import SingleQuery from "./SingleQuery";
 
-const uri = "http://lvh.me:4440/evaluate";
+const example_sents = ["güzel bir filmdi."];
+
+const url = "http://lvh.me:4440/evaluate";
 
 const Sentiment = () => {
   const [query, setQuery] = useState("");
@@ -10,29 +13,19 @@ const Sentiment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let response = await postQuery(uri, query);
-    //setAnswer();
+    let response = await postQuery(url, query);
     setAnswer(response.result);
   };
   return (
     <div>
       <h1>Sentiment Analysis</h1>
 
-      <article>
-        <form className="form" onSubmit={handleSubmit}>
-          <div className="form-control">
-            <label htmlFor="query">Query : </label>
-            <input
-              type="text"
-              id="query"
-              name="query"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      </article>
+      <SingleQuery
+        onChange={setAnswer}
+        value={answer}
+        url={url}
+        example_sents={example_sents}
+      />
       <div>
         <p>{answer}</p>
       </div>
