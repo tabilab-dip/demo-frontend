@@ -9,27 +9,10 @@ const { Option } = Select;
 const SingleQuery = ({ value, onChange, url, example_sents }) => {
   const [form] = Form.useForm();
 
-  const layout = {
-    // labelCol: {
-    //   span: 8,
-    // },
-    // wrapperCol: {
-    //   span: 16,
-    // },
-    // label: {
-    //   display: "block",
-    //   fontSize: "100px",
-    // },
-    // input: {
-    //   display: "block",
-    // },
-  };
-
   const [query, setQuery] = useState("");
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     let response = await postQuery(url, query);
-    onChange(response.result);
+    onChange(response);
   };
   const tmpChange = (value, event) => {
     setQuery(value);
@@ -37,7 +20,7 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
   //
   return (
     <>
-      <Form {...layout} form={form} name="form" onFinish={handleSubmit}>
+      <Form form={form} name="form" onFinish={handleSubmit}>
         <Form.Item
           labelCol={{ span: 24 }}
           label={

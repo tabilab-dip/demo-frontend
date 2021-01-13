@@ -67,7 +67,6 @@ const GlobalHeader = () => {
           style={{ height: "25px", width: "35px" }}
         />
       </div>
-      ,
     </Header>
   );
 };

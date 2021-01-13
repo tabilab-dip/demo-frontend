@@ -9,3 +9,8 @@
 .site-layout .site-layout-background {
   background: #fff;
 }
+
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+}
