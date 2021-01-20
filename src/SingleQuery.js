@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Select, Form, Input, Button, Checkbox } from "antd";
 import { render } from "@testing-library/react";
 import "./index.css";
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 const SingleQuery = ({
@@ -24,7 +25,7 @@ const SingleQuery = ({
   const tmpChange = (value, event) => {
     setQuery(value);
   };
-  //
+  const { t, i18n } = useTranslation();
   return (
     <>
       <Form form={form} name="form" onFinish={handleSubmit}>
@@ -32,7 +33,7 @@ const SingleQuery = ({
           labelCol={{ span: 24 }}
           label={
             <label style={{ fontSize: "15px", fontWeight: "bold" }}>
-              Example Sentences
+              {t("single_query.ex_sentences")}
             </label>
           }
           name="example_sents"
@@ -54,7 +55,7 @@ const SingleQuery = ({
           labelCol={{ span: 24 }}
           label={
             <label style={{ fontSize: "15px", fontWeight: "bold" }}>
-              Sentence
+              {t("single_query.sentence")}
             </label>
           }
         >
@@ -69,7 +70,7 @@ const SingleQuery = ({
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" size={"large"}>
-            Run
+            {t("single_query.run")}
           </Button>
         </Form.Item>
       </Form>

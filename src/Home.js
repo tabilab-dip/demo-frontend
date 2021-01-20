@@ -1,45 +1,13 @@
-import React from "react";
+import { SecurityScanOutlined } from "@ant-design/icons";
+import React, { Suspense } from "react";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t, i18n } = useTranslation();
   return (
     <div>
-      <h1>Collection of demos of tabilab nlp tools</h1>
-      <p>TODO</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
-      <br />
-      <p>...</p>
+      <h1>{t("home.header")}</h1>
+      <p>{t("home.content")}</p>
     </div>
   );
 };

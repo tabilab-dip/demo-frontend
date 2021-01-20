@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MorphParser from "./MorphParser";
 import Sentiment from "./Sentiment";
@@ -9,11 +9,13 @@ import About from "./About";
 import SideMenu from "./SideMenu";
 import Ner from "./Ner";
 import DepParser1 from "./DepParser1";
+import { useTranslation } from "react-i18next";
 
 import { Layout } from "antd";
 const { Content, Footer, Header } = Layout;
 
 const App = () => {
+  const { t, i18n } = useTranslation();
   return (
     <Router>
       <Layout>
@@ -38,9 +40,7 @@ const App = () => {
                 <Route path="/dep-parser1" component={DepParser1} />
                 <Route path="*" component={Home} />
               </Switch>
-              <Footer style={{ textAlign: "center" }}>
-                Tabilab Tools Demo Platform
-              </Footer>
+              <Footer style={{ textAlign: "center" }}>{t("footer")}</Footer>
             </Content>
           </Layout>
         </Content>

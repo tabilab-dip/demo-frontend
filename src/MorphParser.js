@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { postQuery } from "./utils";
 import React, { useState } from "react";
 import SingleQuery from "./SingleQuery";
+import { useTranslation } from "react-i18next";
+
 const url = "http://lvh.me:5000/evaluate";
 
 const example_sents = ["şekerleri yedim .\neve geldim ."];
@@ -9,15 +11,15 @@ const example_sents = ["şekerleri yedim .\neve geldim ."];
 const MorphParser = () => {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState([]);
+  const { t, i18n } = useTranslation();
 
   return (
     <div>
       <h1>
-        <b>Morphological Parser</b>
+        <b>{t("mparser.header")}</b>
       </h1>
       <p>
-        Write each sentence in a newline. End-of-sentence markers should be
-        seperated from the previous token with white spaces. Example:
+        {t("mparser.content")}
         <br />
         "Şekerleri yedim ."
         <br />
