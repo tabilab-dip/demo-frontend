@@ -41,6 +41,11 @@ const SideMenu = () => {
             {t("side_menu.dparser")}
           </Link>
         </Menu.Item>
+        <Menu.Item key="/mwe1">
+          <Link to="/mwe1" style={{ fontSize: "14px" }}>
+            {t("side_menu.mwe")}
+          </Link>
+        </Menu.Item>
       </Menu>
     </Sider>
   );

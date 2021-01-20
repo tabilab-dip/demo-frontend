@@ -6,14 +6,14 @@ import TaskInformation from "./TaskInformation";
 
 const url = "http://lvh.me:4440/evaluate";
 
-const Ner = () => {
+const Mwe = () => {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
   const example_sents = ["Ali ata bak", "Naber"];
   return (
     <>
-      <TaskDefinition context="ner" />
-      <TaskInformation context="ner1_info" />
+      <TaskDefinition context="mwe" />
+      <TaskInformation context="mwe1_info" />
       <SingleQuery
         onChange={setAnswer}
         value={answer}
@@ -26,4 +26,4 @@ const Ner = () => {
   );
 };
 
-export default Ner;
+export default Mwe;

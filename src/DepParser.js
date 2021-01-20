@@ -1,15 +1,19 @@
 import SingleQuery from "./SingleQuery";
 import React, { useState } from "react";
 import Brat from "./Brat";
+import TaskDefinition from "./TaskDefinition";
+import TaskInformation from "./TaskInformation";
 
 const url = "http://lvh.me:5002/evaluate";
 
-const DepParser1 = () => {
+const DepParser = () => {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState([]);
   const example_sents = ["Ali ata bak", "Bu örnek bir cümledir."];
   return (
     <>
+      <TaskDefinition context="dparser" />
+      <TaskInformation context="dparser1_info" />
       <SingleQuery
         onChange={setAnswer}
         url={url}
@@ -23,4 +27,4 @@ const DepParser1 = () => {
   );
 };
 
-export default DepParser1;
+export default DepParser;

@@ -3,6 +3,8 @@ import { postQuery } from "./utils";
 import React, { useState } from "react";
 import SingleQuery from "./SingleQuery";
 import { useTranslation } from "react-i18next";
+import TaskDefinition from "./TaskDefinition";
+import TaskInformation from "./TaskInformation";
 
 const url = "http://lvh.me:5000/evaluate";
 
@@ -15,16 +17,8 @@ const MorphParser = () => {
 
   return (
     <div>
-      <h1>
-        <b>{t("mparser.header")}</b>
-      </h1>
-      <p>
-        {t("mparser.content")}
-        <br />
-        "Şekerleri yedim ."
-        <br />
-        "Eve gittim ."
-      </p>
+      <TaskDefinition context="mparser" />
+      <TaskInformation context="mparser1_info" />
       <SingleQuery
         onChange={setAnswer}
         value={answer}

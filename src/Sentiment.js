@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import SingleQuery from "./SingleQuery";
 import { CheckCircleTwoTone, CloseCircleTwoTone } from "@ant-design/icons";
 import Icon from "antd/lib/icon";
+import TaskDefinition from "./TaskDefinition";
+import TaskInformation from "./TaskInformation";
 import { useTranslation } from "react-i18next";
 
 import "antd/dist/antd.css";
@@ -23,8 +25,8 @@ const Sentiment = () => {
   };
   return (
     <div>
-      <h1>{t("sentiment.header")}</h1>
-      <p>{t("sentiment.description")}</p>
+      <TaskDefinition context="sentiment" />
+      <TaskInformation context="sentiment1_info" />
       <SingleQuery
         onChange={setAnswer}
         value={answer}

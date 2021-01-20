@@ -8,7 +8,8 @@ import "antd/dist/antd.css";
 import About from "./About";
 import SideMenu from "./SideMenu";
 import Ner from "./Ner";
-import DepParser1 from "./DepParser1";
+import DepParser from "./DepParser";
+import Mwe from "./Mwe";
 import { useTranslation } from "react-i18next";
 
 import { Layout } from "antd";
@@ -37,7 +38,8 @@ const App = () => {
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
                 <Route path="/ner1" component={Ner} />
-                <Route path="/dep-parser1" component={DepParser1} />
+                <Route path="/mwe1" component={Mwe} />
+                <Route path="/dep-parser1" component={DepParser} />
                 <Route path="*" component={Home} />
               </Switch>
               <Footer style={{ textAlign: "center" }}>{t("footer")}</Footer>
