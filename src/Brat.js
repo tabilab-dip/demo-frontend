@@ -47,33 +47,27 @@ class Brat extends React.Component {
   }
 
   updateImage() {
-    // if (this.props.doc == null) {
-    //   return;
-    // }
     if (typeof window.Util === "undefined") {
-      console.log("undef");
       return;
     }
 
-    console.log("Update Image; props:");
-    console.log(this.props.doc);
-    console.log("-------");
     let collData = this.props.coll || {};
     let docData = this.props.doc || {};
 
-    console.log("Update Image");
-    console.log(docData);
-    console.log(this.state.loading);
-
-    //window.head.ready(function () {
+    let ex = document.getElementById("embedding-entity-example");
+    if (ex !== null) {
+      ex.removeAttribute("style");
+      ex.removeAttribute("class");
+      if (ex.firstElementChild !== null) {
+        ex.firstElementChild.remove();
+      }
+    }
     window.Util.embed(
       "embedding-entity-example",
       collData,
       docData,
       window.webFontURLs
     );
-
-    //});
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -83,7 +77,6 @@ class Brat extends React.Component {
   componentWillUnmount() {
     this.setState({ loading: true });
     console.log("componentWillUnmount");
-    // remove the nodes
   }
 
   render() {
@@ -92,9 +85,3 @@ class Brat extends React.Component {
 }
 
 export default Brat;
-
-/*
-run the loader part once
-useEffect to add the rendering part
-
-*/

@@ -3,10 +3,15 @@ import React, { useState } from "react";
 import Brat from "./Brat";
 import TaskDefinition from "./TaskDefinition";
 import TaskInformation from "./TaskInformation";
-
+import { docs, colls } from "./data_test_brat";
 const url = "http://lvh.me:4440/evaluate";
 
 const Ner = () => {
+  const [index, setIndex] = useState(0);
+  const bratUpdate = () => {
+    setIndex((prevState) => (prevState + 1) % 2);
+  };
+
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
   const example_sents = ["Ali ata bak", "Naber"];
@@ -21,7 +26,8 @@ const Ner = () => {
         example_sents={example_sents}
         onQueryChange={setQuery}
       />
-      {/* <Brat doc={docData} coll={collData} /> */}
+      <button onClick={bratUpdate}>Brat Test</button>
+      <Brat doc={docs[index]} coll={colls[index]} />
     </>
   );
 };
