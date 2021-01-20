@@ -4,16 +4,13 @@ import MorphParser from "./MorphParser";
 import Sentiment from "./Sentiment";
 import GlobalHeader from "./GlobalHeader";
 import Home from "./Home";
+import "antd/dist/antd.css";
 import About from "./About";
 import SideMenu from "./SideMenu";
 import Ner from "./Ner";
+import DepParser1 from "./DepParser1";
 
 import { Layout } from "antd";
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from "@ant-design/icons";
 const { Content, Footer, Header } = Layout;
 
 const App = () => {
@@ -38,6 +35,7 @@ const App = () => {
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
                 <Route path="/ner1" component={Ner} />
+                <Route path="/dep-parser1" component={DepParser1} />
                 <Route path="*" component={Home} />
               </Switch>
               <Footer style={{ textAlign: "center" }}>

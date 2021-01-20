@@ -49,6 +49,11 @@ class SideMenu extends Component {
               NER
             </Link>
           </Menu.Item>
+          <Menu.Item key="/dep-parser1">
+            <Link to="/dep-parser1" style={{ fontSize: "14px" }}>
+              Dependency Parser
+            </Link>
+          </Menu.Item>
         </Menu>
       </Sider>
     );

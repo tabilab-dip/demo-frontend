@@ -28,6 +28,7 @@ const MorphParser = () => {
         value={answer}
         url={url}
         example_sents={example_sents}
+        onQueryChange={setQuery}
       />
       <div>
         {answer.map((sentence) => {

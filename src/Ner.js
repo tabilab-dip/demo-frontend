@@ -33,13 +33,15 @@ const Ner = () => {
     // Tool header
     // Tool explanation-body
     <>
-      <SingleQuery
+      {/* <SingleQuery
         onChange={setAnswer}
         value={answer}
         url={url}
         example_sents={example_sents}
-      />
+        onQueryChange={setQuery}
+      /> */}
       {/* render only if answer is not undefined; then, block from re-render */}
+      {/* <Brat doc={docData} /> */}
       <Brat doc={docData} coll={collData} />
     </>
     // brat(answer)

@@ -25,11 +25,12 @@ class Brat extends React.Component {
 
     head_script.onload = () => {
       document.body.appendChild(loader_script);
+      console.log("Brat header script is loaded");
     };
 
     loader_script.onload = () => {
       this.setState({ loading: false });
-      // this.updateImage();
+      console.log("Brat loader script is loaded.");
     };
 
     document.head.appendChild(head_script);
@@ -46,11 +47,22 @@ class Brat extends React.Component {
   }
 
   updateImage() {
+    // if (this.props.doc == null) {
+    //   return;
+    // }
+    if (typeof window.Util === "undefined") {
+      console.log("undef");
+      return;
+    }
+
+    console.log("Update Image; props:");
+    console.log(this.props.doc);
+    console.log("-------");
     let collData = this.props.coll || {};
     let docData = this.props.doc || {};
 
     console.log("Update Image");
-    console.log(collData);
+    console.log(docData);
     console.log(this.state.loading);
 
     //window.head.ready(function () {
@@ -60,15 +72,17 @@ class Brat extends React.Component {
       docData,
       window.webFontURLs
     );
+
     //});
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return false;
+    return true;
   }
 
   componentWillUnmount() {
     this.setState({ loading: true });
+    console.log("componentWillUnmount");
     // remove the nodes
   }
 

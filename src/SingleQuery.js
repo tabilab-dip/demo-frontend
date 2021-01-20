@@ -6,13 +6,20 @@ import { render } from "@testing-library/react";
 import "./index.css";
 
 const { Option } = Select;
-const SingleQuery = ({ value, onChange, url, example_sents }) => {
+const SingleQuery = ({
+  value,
+  onChange,
+  url,
+  example_sents,
+  onQueryChange,
+}) => {
   const [form] = Form.useForm();
 
   const [query, setQuery] = useState("");
   const handleSubmit = async () => {
     let response = await postQuery(url, query);
     onChange(response);
+    onQueryChange(query || "");
   };
   const tmpChange = (value, event) => {
     setQuery(value);
@@ -61,7 +68,7 @@ const SingleQuery = ({ value, onChange, url, example_sents }) => {
           />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" size={"large"}>
             Run
           </Button>
         </Form.Item>
