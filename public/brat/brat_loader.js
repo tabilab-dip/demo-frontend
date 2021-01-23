@@ -24,4 +24,5 @@ var webFontURLs = [
   bratLocation + "/static/fonts/Liberation_Sans-Regular.ttf",
 ];
 
+
 // https://github.com/arne-cl/brat-embedded-visualization-examples/blob/master/js/brat_loader.js

@@ -10,7 +10,6 @@ class Brat extends React.Component {
   constructor(props) {
     super(props);
     this.updateImage = this.updateImage.bind(this);
-    this.state = { loading: true };
   }
   componentDidMount() {
     const head_script = document.createElement("script");
@@ -29,18 +28,17 @@ class Brat extends React.Component {
     };
 
     loader_script.onload = () => {
-      this.setState({ loading: false });
       console.log("Brat loader script is loaded.");
     };
-
-    document.head.appendChild(head_script);
+    if (document.getElementById("headjs") === null) {
+      document.head.appendChild(head_script);
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (
-      (!equal(this.props.coll, prevProps.coll) ||
-        !equal(this.props.doc, prevProps.doc)) &&
-      !this.state.loading
+      !equal(this.props.coll, prevProps.coll) ||
+      !equal(this.props.doc, prevProps.doc)
     ) {
       this.updateImage();
     }
@@ -48,39 +46,33 @@ class Brat extends React.Component {
 
   updateImage() {
     if (typeof window.Util === "undefined") {
+      console.log("undef");
       return;
     }
 
     let collData = this.props.coll || {};
     let docData = this.props.doc || {};
 
-    let ex = document.getElementById("embedding-entity-example");
-    if (ex !== null) {
-      ex.removeAttribute("style");
-      ex.removeAttribute("class");
-      if (ex.firstElementChild !== null) {
-        ex.firstElementChild.remove();
-      }
+    if (typeof this.dispatcher === "undefined") {
+      this.dispatcher = window.Util.embed(
+        "embedding-brat",
+        collData,
+        docData,
+        window.webFontURLs
+      );
     }
-    window.Util.embed(
-      "embedding-entity-example",
-      collData,
-      docData,
-      window.webFontURLs
-    );
+    this.dispatcher.post("collectionLoaded", [
+      { collection: null, ...collData },
+    ]);
+    this.dispatcher.post("requestRenderData", [docData]);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return true;
   }
-
-  componentWillUnmount() {
-    this.setState({ loading: true });
-    console.log("componentWillUnmount");
-  }
-
+  componentWillUnmount() {}
   render() {
-    return <div id="embedding-entity-example"></div>;
+    return <div id="embedding-brat"></div>;
   }
 }
 
