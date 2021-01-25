@@ -16,7 +16,7 @@ const Ner = () => {
   const [answer, setAnswer] = useState("");
   const example_sents = ["Ali ata bak", "Naber"];
   return (
-    <>
+    <div>
       <TaskDefinition context="ner" />
       <TaskInformation context="ner1_info" />
       <SingleQuery
@@ -28,7 +28,7 @@ const Ner = () => {
       />
       <button onClick={bratUpdate}>Brat Test</button>
       <Brat doc={docs[index]} coll={colls[index]} />
-    </>
+    </div>
   );
 };
 

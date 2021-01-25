@@ -11,7 +11,7 @@ const SideMenu = () => {
   return (
     <Sider
       className="site-layout-background"
-      width={200}
+      width={300}
       style={{
         overflow: "auto",
         height: "90vh",
@@ -21,30 +21,20 @@ const SideMenu = () => {
       }}
     >
       <Menu theme="white" mode="inline">
-        <Menu.Item key="/sentiment">
-          <Link to="/sentiment" style={{ fontSize: "14px" }}>
-            {t("side_menu.sentiment")}
-          </Link>
+        <Menu.Item key="/sentiment" className="local-header-text">
+          <Link to="/sentiment">{t("side_menu.sentiment")}</Link>
         </Menu.Item>
-        <Menu.Item key="/morph-parser">
-          <Link to="/morph-parser" style={{ fontSize: "14px" }}>
-            {t("side_menu.mparser")}
-          </Link>
+        <Menu.Item key="/morph-parser" className="local-header-text">
+          <Link to="/morph-parser">{t("side_menu.mparser")}</Link>
         </Menu.Item>
-        <Menu.Item key="/ner1">
-          <Link to="/ner1" style={{ fontSize: "14px" }}>
-            {t("side_menu.ner")}
-          </Link>
+        <Menu.Item key="/ner1" className="local-header-text">
+          <Link to="/ner1">{t("side_menu.ner")}</Link>
         </Menu.Item>
-        <Menu.Item key="/dep-parser1">
-          <Link to="/dep-parser1" style={{ fontSize: "14px" }}>
-            {t("side_menu.dparser")}
-          </Link>
+        <Menu.Item key="/dep-parser1" className="local-header-text">
+          <Link to="/dep-parser1">{t("side_menu.dparser")}</Link>
         </Menu.Item>
-        <Menu.Item key="/mwe1">
-          <Link to="/mwe1" style={{ fontSize: "14px" }}>
-            {t("side_menu.mwe")}
-          </Link>
+        <Menu.Item key="/mwe1" className="local-header-text">
+          <Link to="/mwe1">{t("side_menu.mwe")}</Link>
         </Menu.Item>
       </Menu>
     </Sider>

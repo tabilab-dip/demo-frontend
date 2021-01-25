@@ -84,6 +84,7 @@ path {
 /* "basic" font */
 .span text {
   /*  font-size: 10.5px; */
+  /* text inside the boxes*/
   font-size: 10px;
   text-anchor: middle;
   font-family: "PT Sans Caption", sans-serif;
@@ -107,6 +108,7 @@ path {
 
 .span rect {
   stroke-width: 0.75;
+  /* width: xxpx; width of the boxes */
 }
 
 .glyph {
@@ -284,6 +286,7 @@ rect.shadow_EditHighlight {
 }
 
 .arcs text {
+  /* aaa arctext */
   font-size: 9px;
   text-anchor: middle;
   font-family: "PT Sans Caption", sans-serif;

@@ -11,10 +11,9 @@ import Ner from "./Ner";
 import DepParser from "./DepParser";
 import Mwe from "./Mwe";
 import { useTranslation } from "react-i18next";
-
 import { Layout } from "antd";
-const { Content, Footer, Header } = Layout;
 
+const { Content, Footer, Header } = Layout;
 const App = () => {
   const { t, i18n } = useTranslation();
   return (
@@ -27,7 +26,10 @@ const App = () => {
             <Content
               className="site-layout"
               style={{
-                padding: "100px 240px",
+                paddingLeft: "340px",
+                paddingRight: "100px",
+                paddingTop: "100px",
+                paddingBottom: "0px",
                 minHeight: "700px",
               }}
             >

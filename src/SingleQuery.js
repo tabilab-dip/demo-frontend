@@ -27,16 +27,18 @@ const SingleQuery = ({
   };
   const { t, i18n } = useTranslation();
   return (
-    <>
-      <Form form={form} name="form" onFinish={handleSubmit}>
+    <div>
+      <Form
+        form={form}
+        name="form"
+        onFinish={handleSubmit}
+        style={{ marginTop: "20px" }}
+      >
         <Form.Item
           labelCol={{ span: 24 }}
-          label={
-            <label style={{ fontSize: "15px", fontWeight: "bold" }}>
-              {t("single_query.ex_sentences")}
-            </label>
-          }
+          label={<label>{t("single_query.ex_sentences")}</label>}
           name="example_sents"
+          className="local-header-text"
         >
           <Select
             onSelect={(value, event) => tmpChange(value, event)}
@@ -44,7 +46,7 @@ const SingleQuery = ({
           >
             {example_sents.map((sent, id) => {
               return (
-                <Option key={id} value={sent}>
+                <Option key={id} value={sent} className="local-header-text">
                   {sent}
                 </Option>
               );
@@ -53,11 +55,8 @@ const SingleQuery = ({
         </Form.Item>
         <Form.Item
           labelCol={{ span: 24 }}
-          label={
-            <label style={{ fontSize: "15px", fontWeight: "bold" }}>
-              {t("single_query.sentence")}
-            </label>
-          }
+          label={<label>{t("single_query.sentence")}</label>}
+          className="local-header-text"
         >
           <Input.TextArea
             name="query"
@@ -74,7 +73,7 @@ const SingleQuery = ({
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </div>
   );
 };
 

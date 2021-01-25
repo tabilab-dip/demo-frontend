@@ -31,6 +31,7 @@ class Brat extends React.Component {
       console.log("Brat loader script is loaded.");
     };
     if (document.getElementById("headjs") === null) {
+      // keep the scripts loaded all the time, and don't reload
       document.head.appendChild(head_script);
     }
   }
@@ -46,7 +47,6 @@ class Brat extends React.Component {
 
   updateImage() {
     if (typeof window.Util === "undefined") {
-      console.log("undef");
       return;
     }
 
@@ -70,7 +70,7 @@ class Brat extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return true;
   }
-  componentWillUnmount() {}
+
   render() {
     return <div id="embedding-brat"></div>;
   }

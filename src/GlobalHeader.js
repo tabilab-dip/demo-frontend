@@ -1,5 +1,4 @@
 import React from "react";
-import "./index.css";
 import "antd/dist/antd.css";
 import tr_flag from "./assets/images/tr.svg";
 import en_flag from "./assets/images/gb.svg";
@@ -19,22 +18,33 @@ const GlobalHeader = () => {
 
   return (
     <Header
+      className="header"
       style={{
-        position: "fixed",
+        position: "absolute",
         zIndex: 1,
         width: "100%",
+        paddingLeft: "5px",
+        height: "65px",
       }}
     >
       <div className="logo" />
       {/* <img src={logo} alt="App logo" /> */}
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["-1"]}>
-        <Menu.Item key="1">
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={["-1"]}
+        style={{
+          marginTop: "0",
+          height: "100%",
+        }}
+      >
+        <Menu.Item key="1" className="local-header-text">
           <a href="/home">{t("header.home")}</a>
         </Menu.Item>
-        <Menu.Item key="2">
+        <Menu.Item key="2" className="local-header-text">
           <a href="/about">{t("header.about")}</a>
         </Menu.Item>
-        <Menu.Item key="3">
+        <Menu.Item key="3" className="local-header-text">
           <a
             href="https://tabilab.cmpe.boun.edu.tr/"
             target="_blank"
@@ -44,7 +54,7 @@ const GlobalHeader = () => {
           </a>
         </Menu.Item>
 
-        <Menu.Item key="4">
+        <Menu.Item key="4" className="local-header-text">
           <a
             href="https://tabilab.cmpe.boun.edu.tr/"
             target="_blank"
@@ -54,31 +64,35 @@ const GlobalHeader = () => {
           </a>
         </Menu.Item>
       </Menu>
-      <div
-        className="flag-list"
-        style={{
-          position: "absolute",
-          left: "95%",
-          top: "50%",
-          overflow: "auto",
-          transform: " translate(-50%, -50%)",
-        }}
-      >
-        <a>
-          <img
-            src={tr_flag}
-            style={{ height: "25px", width: "35px" }}
-            onClick={() => changeLanguage("tr")}
-          />
-        </a>
-        <a>
-          <img
-            src={en_flag}
-            style={{ height: "25px", width: "35px" }}
-            onClick={() => changeLanguage("en")}
-          />
-        </a>
-      </div>
+      <a>
+        <img
+          src={tr_flag}
+          style={{
+            position: "fixed",
+            top: "15px",
+            right: "50px",
+            float: "right",
+            height: "25px",
+            width: "35px",
+          }}
+          onClick={() => changeLanguage("tr")}
+        />
+      </a>
+      <a>
+        <img
+          src={en_flag}
+          style={{
+            position: "fixed",
+            top: "15px",
+            right: "15px",
+            float: "right",
+            height: "25px",
+            width: "35px",
+            overflow: "hidden",
+          }}
+          onClick={() => changeLanguage("en")}
+        />
+      </a>
     </Header>
   );
 };
