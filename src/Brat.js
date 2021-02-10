@@ -1,7 +1,6 @@
-import $ from "jquery";
 import equal from "fast-deep-equal";
 import "./brat_css/style-vis.css";
-import React, { useState } from "react";
+import React from "react";
 
 //TODO: need to fix this later
 const PUBLIC_URL = "http://localhost:3000/";

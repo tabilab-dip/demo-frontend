@@ -1,17 +1,12 @@
-import { Link } from "react-router-dom";
 import { postQuery } from "./utils";
-import "antd/dist/antd.css";
 import React, { useState } from "react";
 import SingleQuery from "./SingleQuery";
-import { CheckCircleTwoTone, CloseCircleTwoTone } from "@ant-design/icons";
-import Icon from "antd/lib/icon";
 import TaskDefinition from "./TaskDefinition";
 import TaskInformation from "./TaskInformation";
 import { useTranslation } from "react-i18next";
-
 import "antd/dist/antd.css";
-const example_sents = ["güzel bir filmdi."];
 
+const example_sents = ["güzel bir filmdi."];
 const url = "http://lvh.me:5001/evaluate";
 
 const Sentiment = () => {
@@ -37,17 +32,19 @@ const Sentiment = () => {
       <div>
         {answer.result == "Positive" ? (
           <>
-            <span style={{ color: "green" }}>{answer.result}</span>
-            {/* <div>
-              <CheckCircleTwoTone twoToneColor="#52c41a" />
-            </div> */}
+            <span
+              style={{ color: "green", fontSize: "26px", fontWeight: "bold" }}
+            >
+              {answer.result}
+            </span>
           </>
         ) : answer.result == "Negative" ? (
           <>
-            <span style={{ color: "red" }}>{answer.result}</span>
-            {/* <div>
-              <CloseCircleTwoTone twoToneColor="#eb2f96" />
-            </div> */}
+            <span
+              style={{ color: "red", fontSize: "26px", fontWeight: "bold" }}
+            >
+              {answer.result}
+            </span>
           </>
         ) : (
           ""

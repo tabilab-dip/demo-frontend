@@ -1,9 +1,8 @@
 import React from "react";
-import { Layout, Collapse } from "antd";
+import { Collapse } from "antd";
 import { useTranslation } from "react-i18next";
 
 const { Panel } = Collapse;
-const { Content } = Layout;
 
 const TaskInformation = ({ context }) => {
   const { t, i18n } = useTranslation();

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import { postQuery } from "./utils";
 import React, { useState } from "react";
 import SingleQuery from "./SingleQuery";
 import { useTranslation } from "react-i18next";
@@ -7,7 +5,6 @@ import TaskDefinition from "./TaskDefinition";
 import TaskInformation from "./TaskInformation";
 
 const url = "http://lvh.me:5000/evaluate";
-
 const example_sents = ["şekerleri yedim .\neve geldim ."];
 
 const MorphParser = () => {

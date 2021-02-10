@@ -1,7 +1,6 @@
 import React, { Component, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
 const { Sider } = Layout;

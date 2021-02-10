@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
 import { postQuery } from "./utils";
 import React, { useState, useEffect } from "react";
 import { Select, Form, Input, Button, Checkbox } from "antd";
-import { render } from "@testing-library/react";
-import "./index.css";
 import { useTranslation } from "react-i18next";
+import "./index.css";
 
 const { Option } = Select;
 const SingleQuery = ({
