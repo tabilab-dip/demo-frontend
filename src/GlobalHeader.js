@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import tr_flag from "./assets/images/tr.svg";
 import en_flag from "./assets/images/gb.svg";
 // TODO change the logo
-import logo from "./assets/images/boun_logo.png";
+import logo from "./assets/images/tabilab_big.png";
 import { Layout, Menu } from "antd";
 import { useTranslation } from "react-i18next";
 
@@ -20,15 +20,28 @@ const GlobalHeader = () => {
     <Header
       className="header"
       style={{
-        position: "absolute",
+        position: "fixed",
         zIndex: 1,
         width: "100%",
         paddingLeft: "5px",
         height: "65px",
       }}
     >
-      <div className="logo" />
-      {/* <img src={logo} alt="App logo" /> */}
+      <div className="logo">
+        <a href="https://www.tabilab.boun.edu.tr">
+          <img
+            src={logo}
+            alt="App logo"
+            style={{
+              paddingTop: "0",
+              marginTop: "0",
+              position: "fixed",
+              width: "120px",
+              height: "50px",
+            }}
+          />
+        </a>
+      </div>
       <Menu
         theme="dark"
         mode="horizontal"
