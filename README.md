@@ -17,6 +17,6 @@ npm run start
 ---
 
 #### ACKNOWLEDGEMENTS:
-* [Brat](https://github.com/nlplab/brat) annotater is used for visualization, wrapped in a React component.
+* [Brat](https://github.com/nlplab/brat) annotator is used for visualization, wrapped in a React component.
 
 ---
