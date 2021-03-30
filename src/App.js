@@ -12,6 +12,8 @@ import DepParser from "./DepParser";
 import Mwe from "./Mwe";
 import { useTranslation } from "react-i18next";
 import { Layout } from "antd";
+import testAutoRender from "./testAutoRender";
+import DockerPanel from "./DockerPanel";
 
 const { Content, Footer, Header } = Layout;
 const App = () => {
@@ -37,10 +39,12 @@ const App = () => {
                 <Route exact path="/" component={Home} />
                 <Route path="/morph-parser" component={MorphParser} />
                 <Route path="/sentiment" component={Sentiment} />
+                <Route path="/panel" component={DockerPanel} />
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
                 <Route path="/ner1" component={Ner} />
                 <Route path="/mwe1" component={Mwe} />
+                <Route path="/test" component={testAutoRender} />
                 <Route path="/dep-parser1" component={DepParser} />
                 <Route path="*" component={Home} />
               </Switch>

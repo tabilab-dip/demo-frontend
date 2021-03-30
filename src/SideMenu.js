@@ -35,6 +35,9 @@ const SideMenu = () => {
         <Menu.Item key="/mwe1" className="local-header-text">
           <Link to="/mwe1">{t("side_menu.mwe")}</Link>
         </Menu.Item>
+        <Menu.Item key="/test" className="local-header-text">
+          <Link to="/test">Test</Link>
+        </Menu.Item>
       </Menu>
     </Sider>
   );
