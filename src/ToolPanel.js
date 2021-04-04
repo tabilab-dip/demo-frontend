@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout, Tabs } from "antd";
-import AddDockerForm from "./docker_utils/AddDockerForm"
+import AddTools from "./tool_utils/AddTools";
+import ManageTools from "./tool_utils/ManageTools";
 const { Content } = Layout;
 const { TabPane } = Tabs;
 
@@ -13,16 +14,15 @@ Makes the corresponding requets of the tab;
     renders login prompt instead
 */
 
-const DockerPanel = () => {
+const ToolPanel = () => {
   return (
   <div>
-  <Tabs defaultActiveKey="1" onChange={callback} type="card" style={{
-  }}>
+  <Tabs defaultActiveKey="1" onChange={callback} type="card">
     <TabPane tab="Add Container" key="1">
-      <AddDockerForm></AddDockerForm>
+      <AddTools></AddTools>
     </TabPane>
     <TabPane tab="Manage Containers" key="2">
-      Content of Tab Pane 2
+      <ManageTools></ManageTools>
     </TabPane>
       </Tabs>
   </div>
@@ -31,4 +31,4 @@ const DockerPanel = () => {
 
 
 
-export default DockerPanel;
+export default ToolPanel;

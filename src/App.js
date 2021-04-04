@@ -13,7 +13,7 @@ import Mwe from "./Mwe";
 import { useTranslation } from "react-i18next";
 import { Layout } from "antd";
 import testAutoRender from "./testAutoRender";
-import DockerPanel from "./DockerPanel";
+import ToolPanel from "./ToolPanel";
 
 const { Content, Footer, Header } = Layout;
 const App = () => {
@@ -39,7 +39,7 @@ const App = () => {
                 <Route exact path="/" component={Home} />
                 <Route path="/morph-parser" component={MorphParser} />
                 <Route path="/sentiment" component={Sentiment} />
-                <Route path="/panel" component={DockerPanel} />
+                <Route path="/panel" component={ToolPanel} />
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
                 <Route path="/ner1" component={Ner} />

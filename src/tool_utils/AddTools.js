@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Result, Form, Input, Button } from 'antd';
 import { postQuery } from "../utils";
-const url = "http://lvh.me:5000/api/tools/add";
+const url = "http://lvh.me:5000/api/tool";
 
-const AddDockerForm = () => {
+const AddTools = () => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('horizontal');
   const [serverResponse, setServerResponse] = useState([]);
   const onFinish =  async (values) => {
-    console.log(values);
     let response = {};
     if (typeof values.ip === 'undefined' 
         || values.port === 'undefined' 
@@ -77,8 +76,8 @@ const AddDockerForm = () => {
           <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
-      {serverResponse && <Result {...serverResponse}></Result>}
+      {serverResponse && <pre><Result {...serverResponse}></Result></pre>}
     </>
   );
 };
-export default AddDockerForm;
+export default AddTools;
