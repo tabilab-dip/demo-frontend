@@ -18,10 +18,10 @@ const ToolPanel = () => {
   return (
   <div>
   <Tabs defaultActiveKey="1" onChange={callback} type="card">
-    <TabPane tab="Add Container" key="1">
+    <TabPane tab="Add Tools" key="1">
       <AddTools></AddTools>
     </TabPane>
-    <TabPane tab="Manage Containers" key="2">
+    <TabPane tab="Manage Tools" key="2">
       <ManageTools></ManageTools>
     </TabPane>
       </Tabs>
