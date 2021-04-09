@@ -90,6 +90,7 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
       git: '',
       ip: '',
       port: '',
+      update_time: '',
       ...record,
     });
     setEditingKey(record.key);
@@ -152,25 +153,31 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
     {
       title: 'Enum',
       dataIndex: 'enum',
-      width: '15%',
+      width: '10%',
       editable: true,
     },
     {
       title: 'Git Address',
       dataIndex: 'git',
-      width: '30%',
+      width: '25%',
       editable: true,
     },
     {
       title: 'IP',
       dataIndex: 'ip',
-      width: '15%',
+      width: '12%',
       editable: true,
     },
     {
       title: 'Port',
       dataIndex: 'port',
       width: '10%',
+      editable: true,
+    },
+    {
+      title: 'Updated',
+      dataIndex: 'update_time',
+      width: '13%',
       editable: true,
     },
     {

@@ -6,7 +6,7 @@ async function postQuery(uri, query) {
   };
   const response = await fetch(uri, requestOptions);
   const data = await response.json();
-  return data;
+  return {data: data, status: response.status};
 }
 
 async function putQuery(uri, query) {

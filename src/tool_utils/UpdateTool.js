@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import React, { useState } from 'react';
 import { Result, Form, Input, Button} from 'antd';
 import { postQuery } from "../utils";
 
@@ -6,18 +6,12 @@ const url = "http://lvh.me:5000/api/tool";
 const { TextArea } = Input;
 
 
-const AddTools = forwardRef((props, ref) => {
+const UpdateTool = () => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('horizontal');
   const [serverResponse, setServerResponse] = useState({});
-  useImperativeHandle(ref, () => ({
-    resetSwitch() {
-      setServerResponse({});
-    }
-  }));
   const onFinish =  async (values) => {
     let response = {};
-    setServerResponse({});
     if (typeof values.ip === 'undefined' 
         || values.port === 'undefined' 
         || values.git === 'undefined' 
@@ -28,10 +22,7 @@ const AddTools = forwardRef((props, ref) => {
     else{
       console.log(values);
       response = await postQuery(url, values);
-      let {data, status} = response;
-      if (status===200){
-        form.resetFields();
-      }
+      form.resetFields();
     }
     setServerResponse(response);
   };
@@ -101,8 +92,8 @@ const AddTools = forwardRef((props, ref) => {
       </Form>
       {/* {serverResponse && <pre><Result {...serverResponse}></Result></pre>} */}
       {/* { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse}></Result></pre>} */}
-      { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse.data}></Result></pre>}
+      { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse}></Result></pre>}
     </>
   );
-});
-export default AddTools;
+};
+export default UpdateTool;
