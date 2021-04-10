@@ -1,14 +1,13 @@
 import React,  { useState, useEffect } from "react";
-import {Result,  Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
+import {Button, Modal, Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
 import { putQuery, deleteQuery } from "../utils";
+import UpdateTool from "./UpdateTool";
 
 const url_tools = "http://lvh.me:5000/api/tools"
 const url_update = "http://lvh.me:5000/api/tool/"
 
 const ManageTools = () => {
   const [tools, setTools] = useState([]);
-  const [response, setResponse] = useState({});
-  const [wait, setWait] = useState(false);
   const getTools = async () => {
     const response = await fetch(url_tools);
     let tools = await response.json();
@@ -18,8 +17,8 @@ const ManageTools = () => {
       o.key = index;
       return o;
     });
+    console.log("tools are updated");
     setTools(tools);
-    console.log(tools);
   };
 
   useEffect(() => {
@@ -28,9 +27,7 @@ const ManageTools = () => {
 
   return (
   <>
-  {wait && <Result {...{title: "Wait please"}}></Result>}
-  {tools.length!=0 && <EditableTable rowData={tools} setResponse={setResponse} setWait={setWait}></EditableTable>}
-  {Object.keys(response).length!=0 && <pre><Result {...response}></Result></pre>}
+  {tools.length!=0 && <EditableTable rowData={tools} callbackFetch={getTools}></EditableTable>}
   </>
   );
 };
@@ -76,25 +73,28 @@ const EditableCell = ({
   );
 };
 
-const EditableTable = ({rowData, setResponse, setWait}) => {
+const EditableTable = ({rowData, callbackFetch}) => {
   const [form] = Form.useForm();
   const [data, setData] = useState(rowData);
   const [editingKey, setEditingKey] = useState('');
-  console.log("etab", data);
+  const [showModal, setShowModal] = useState(false);
+  const [curToolFields, setCurToolFields] = useState({});
   const isEditing = (record) => record.key === editingKey;
 
+  useEffect(() => {
+    console.log("useEFfect");
+    setData(rowData);
+  }, [rowData]);
+
   const edit = (record) => {
-    form.setFieldsValue({
-      name: '',
-      enum: '',
-      git: '',
-      ip: '',
-      port: '',
-      update_time: '',
-      ...record,
-    });
-    setEditingKey(record.key);
-  };
+    const key = record.key;
+    console.log(key);
+    const index = data.findIndex((item) => key === item.key);
+    const item = data[index];
+    console.log(item);
+    setCurToolFields(item);
+    setShowModal(true);
+  };  
 
   const cancel = () => {
     setEditingKey('');
@@ -108,10 +108,7 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, { ...item, ...row });
-        setWait(true);
         let {data: response, status: status} = await putQuery(url_update+data[index].enum, newData[index]);
-        setWait(false);
-        setResponse(response);
         if (status === 200){
           setData(newData);
         }
@@ -129,10 +126,7 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
       const index = newData.findIndex((item) => key === item.key);
       if (index > -1) {
         newData.splice(index, 1);
-        setWait(true);
         let {data: response, status: status} = await deleteQuery(url_update+data[index].enum);
-        setWait(false);
-        setResponse(response);
         if (status === 200){
           setData(newData);
         }
@@ -147,25 +141,25 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
     {
       title: 'Name',
       dataIndex: 'name',
-      width: '20%',
+      width: '16%',
       editable: true,
     },
     {
       title: 'Enum',
       dataIndex: 'enum',
-      width: '10%',
+      width: '9%',
       editable: true,
     },
     {
       title: 'Git Address',
       dataIndex: 'git',
-      width: '25%',
+      width: '21%',
       editable: true,
     },
     {
       title: 'IP',
       dataIndex: 'ip',
-      width: '12%',
+      width: '11%',
       editable: true,
     },
     {
@@ -177,7 +171,13 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
     {
       title: 'Updated',
       dataIndex: 'update_time',
-      width: '13%',
+      width: '12%',
+      editable: true,
+    },
+    {
+      title: 'Contact',
+      dataIndex: 'contact_info',
+      width: '11%',
       editable: true,
     },
     {
@@ -185,22 +185,7 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
       dataIndex: 'operation',
       render: (_, record) => {
         const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <Popconfirm title="Sure to update?" onConfirm={() => save(record.key)}>
-            <a
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Update
-            </a>
-            </Popconfirm>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
-            </Popconfirm>
-          </span>
-        ) : (
+        return (
           <span>
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{
                 marginRight: 8,
@@ -232,7 +217,13 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
       }),
     };
   });
+
+  const handleModalCancel = () => {
+    setShowModal(false);
+  };
+
   return (
+    <>
     <Form form={form} component={false}>
       <Table
         components={{
@@ -249,5 +240,16 @@ const EditableTable = ({rowData, setResponse, setWait}) => {
         }}
       />
     </Form>
+    <Modal 
+      title="Update Tool" visible={showModal} 
+      footer={[
+            <Button key="back" onClick={handleModalCancel}>
+              Return
+            </Button>,]
+          }
+          width={1000}>
+        <UpdateTool fields={curToolFields} callbackFetch={callbackFetch}></UpdateTool>
+    </Modal>
+    </>
   );
 };

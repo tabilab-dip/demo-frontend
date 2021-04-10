@@ -9,6 +9,7 @@ const { TextArea } = Input;
 const AddTools = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('horizontal');
+  const [wait, setWait] = useState(false);
   const [serverResponse, setServerResponse] = useState({});
   useImperativeHandle(ref, () => ({
     resetSwitch() {
@@ -23,11 +24,14 @@ const AddTools = forwardRef((props, ref) => {
         || values.git === 'undefined' 
         || values.enum === 'undefined'
         || values.name === "undefined"){
-      response = {title: "You need to specify all values"};
+      response = {data: {title: "You need to specify all values"}};
+      
     }
     else{
       console.log(values);
+      setWait(true);
       response = await postQuery(url, values);
+      setWait(false);
       let {data, status} = response;
       if (status===200){
         form.resetFields();
@@ -55,7 +59,6 @@ const AddTools = forwardRef((props, ref) => {
 
   return (
   <>
-    
       <Form
         {...formItemLayout}
         form={form}
@@ -99,8 +102,7 @@ const AddTools = forwardRef((props, ref) => {
         </Form.Item>
         
       </Form>
-      {/* {serverResponse && <pre><Result {...serverResponse}></Result></pre>} */}
-      {/* { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse}></Result></pre>} */}
+      {wait && <Result {...{title: "Wait please"}}></Result>}
       { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse.data}></Result></pre>}
     </>
   );

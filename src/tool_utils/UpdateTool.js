@@ -1,28 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Result, Form, Input, Button} from 'antd';
-import { postQuery } from "../utils";
+import { putQuery } from "../utils";
 
 const url = "http://lvh.me:5000/api/tool";
+const url_update = "http://lvh.me:5000/api/tool/"
 const { TextArea } = Input;
 
-
-const UpdateTool = () => {
+const UpdateTool = ({fields, callbackFetch}) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('horizontal');
+  const [wait, setWait] = useState(false);
   const [serverResponse, setServerResponse] = useState({});
+
+  useEffect(() => {
+      form.setFieldsValue(fields);
+  }, );
+
   const onFinish =  async (values) => {
     let response = {};
+    setServerResponse({});
+    console.log("updateTools |||", values);
+    console.log(fields.enum);
+    console.log("132123", fields);
     if (typeof values.ip === 'undefined' 
         || values.port === 'undefined' 
         || values.git === 'undefined' 
         || values.enum === 'undefined'
         || values.name === "undefined"){
-      response = {title: "You need to specify all values"};
+      response = {data: {title: "You need to specify all values"}};
     }
     else{
-      console.log(values);
-      response = await postQuery(url, values);
-      form.resetFields();
+      setWait(true);
+      response = await putQuery(url_update + fields.enum, values);
+      setWait(false);
+      if (response.status === 200){
+        await callbackFetch();
+      }
     }
     setServerResponse(response);
   };
@@ -90,10 +103,12 @@ const UpdateTool = () => {
         </Form.Item>
         
       </Form>
-      {/* {serverResponse && <pre><Result {...serverResponse}></Result></pre>} */}
-      {/* { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse}></Result></pre>} */}
-      { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse}></Result></pre>}
+      {wait && <Result {...{title: "Wait please"}}></Result>}
+      { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse.data}></Result></pre>}
+
     </>
   );
 };
 export default UpdateTool;
+
+
