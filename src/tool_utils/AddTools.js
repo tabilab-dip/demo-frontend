@@ -1,21 +1,20 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Result, Form, Input, Button} from 'antd';
 import { postQuery } from "../utils";
 
 const url = "http://lvh.me:5000/api/tool";
+const url_auth = "http://lvh.me:5000/api/user/isauth";
+
 const { TextArea } = Input;
 
 
-const AddTools = forwardRef((props, ref) => {
+const AddTools = ({isAuth, setIsAuth}) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('horizontal');
   const [wait, setWait] = useState(false);
   const [serverResponse, setServerResponse] = useState({});
-  useImperativeHandle(ref, () => ({
-    resetSwitch() {
-      setServerResponse({});
-    }
-  }));
+  
+
   const onFinish =  async (values) => {
     let response = {};
     setServerResponse({});
@@ -106,5 +105,5 @@ const AddTools = forwardRef((props, ref) => {
       { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse.data}></Result></pre>}
     </>
   );
-});
+};
 export default AddTools;
