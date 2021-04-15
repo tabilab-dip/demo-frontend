@@ -6,15 +6,13 @@ import UpdateTool from "./UpdateTool";
 const url_tools = "http://lvh.me:5000/api/tools"
 const url_update = "http://lvh.me:5000/api/tool/"
 
+
 const ManageTools = ({isAuth, setIsAuth}) => {
   const [tools, setTools] = useState([]);
   const getTools = async () => {
+    console.log("GTOOLS");
+
     let {data: tools, status: status} = await getQuery(url_tools);
-    if (status == 401) {
-      setIsAuth(false);
-      return;
-    }
-    console.log(tools);
     // set keys:
     tools = tools.map((tool, index)=>{
       let o = Object.assign({}, tool);
@@ -26,13 +24,14 @@ const ManageTools = ({isAuth, setIsAuth}) => {
   };
 
   useEffect(() => {
+    console.log("mt UF");
     getTools();
   }, []);
 
   return (
   <>
   <Button  onClick={getTools}>
-              Refresh
+    Refresh
   </Button>
   {tools.length!=0 && <EditableTable rowData={tools} callbackFetch={getTools}></EditableTable>}
   </>
