@@ -5,7 +5,8 @@ import UserForm from "./UserForm";
 const { Panel } = Collapse;
 const url_get_user = "http://lvh.me:5000/api/user";
 const url_get_users = "http://lvh.me:5000/api/users";
-const url_update_user = "http://lvh.me:5000/api/user/update";
+const url_update_user_info = "http://lvh.me:5000/api/user/update_info";
+const url_update_user_pass = "http://lvh.me:5000/api/user/update_pass";
 const url_delete_user = "http://lvh.me:5000/api/user/";
 
 
@@ -55,7 +56,7 @@ const AccountManagement = ({isAuth, setIsAuth}) => {
                 <AccountInfo user={user}></AccountInfo>
                 <hr/>
                 <hr/>
-                <UpdateCurUser user={user}></UpdateCurUser>
+                <UpdateCurUser user={user} getUserCallback={getUser}></UpdateCurUser>
                 <hr/>
                 <hr/>
                 {(user.roles.includes("admin")) && (
@@ -104,11 +105,19 @@ const AccountInfo = ({user}) => {
   )
 };
 
-const UpdateCurUser = ({user}) => {
+const UpdateCurUser = ({user, getUserCallback}) => {
     const [serverResponse, setServerResponse] = useState({});
-    const onFinish = async (values) => {
-        let response = await putQuery(url_update_user, values);
+    const updatePassword = async (values) => {
+        let response = await putQuery(url_update_user_pass, values);
         setServerResponse(response);
+    };
+
+    const updateUserInfo = async (values) => {
+        let response = await putQuery(url_update_user_info, values);
+        setServerResponse(response);
+        if (response.status === 200){
+          getUserCallback();
+        }
     };
 
     const layout = {
@@ -131,7 +140,7 @@ const UpdateCurUser = ({user}) => {
     <Form
       {...layout}
       name="basic"
-      onFinish={onFinish}
+      onFinish={updateUserInfo}
     >
       <Form.Item
         label="Username"
@@ -161,6 +170,19 @@ const UpdateCurUser = ({user}) => {
         <Input />
       </Form.Item>
 
+      <Form.Item {...tailLayout}>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+
+    <h2>Update Password</h2>
+    <Form
+      {...layout}
+      name="basic"
+      onFinish={updatePassword}
+    > 
       <Form.Item
         label="New Password"
         name="password1"
