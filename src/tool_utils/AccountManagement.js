@@ -17,6 +17,9 @@ const AccountManagement = ({isAuth, setIsAuth}) => {
 
     const getUsers = async () => {
         let {data: data, status: status} = await getQuery(url_get_users);
+        if (status !== 200){
+          return;
+        }
         data = data.map((user, index)=>{
             let o = Object.assign({}, user);
             o.key = index;
@@ -27,7 +30,7 @@ const AccountManagement = ({isAuth, setIsAuth}) => {
 
     const getUser = async () => {
         let {data: data, status: status} = await getQuery(url_get_user);
-        if (status == 401) {
+        if (status === 401) {
             setIsAuth(false);
             return;
         }

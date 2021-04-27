@@ -21,7 +21,7 @@ const UserForm = ({createNew, user, callbackFeth, setShowModal}) => {
   useEffect(() => {
       form.setFieldsValue(user);
       getTools();
-  }, []);
+  }, [user]);
 
   const onFinish =  async (values) => {
     let response = {};
@@ -84,7 +84,7 @@ const UserForm = ({createNew, user, callbackFeth, setShowModal}) => {
         form={form}
         onFinish={onFinish}
       >
-        <Form.Item label="Usernmae" name="username" >
+        <Form.Item label="Username" name="username" >
           <Input placeholder="alican" />
         </Form.Item>
         <Form.Item label="email" name="email" >

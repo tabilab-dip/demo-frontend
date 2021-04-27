@@ -3,7 +3,7 @@ import "./brat_css/style-vis.css";
 import React from "react";
 
 //TODO: need to fix this later
-const PUBLIC_URL = "http://localhost:3000/";
+const PUBLIC_URL = "http://lvh.me:3000/";
 
 class Brat extends React.Component {
   constructor(props) {
