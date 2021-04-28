@@ -56,7 +56,7 @@ const TaskInformation = ({ authorSpecs }) => {
             {
               authorSpecs["program_links"].map((program_link, index) => {
                 return (<>
-                        <a href={program_link}>Program {index}</a>
+                        <a href={program_link}>Program-{index+1}</a>
                         {authorSpecs["program_authors"].length-1 > index && " ,"}
                         </>
                         );})
