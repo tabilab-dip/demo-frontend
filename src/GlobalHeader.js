@@ -27,21 +27,6 @@ const GlobalHeader = () => {
         height: "65px",
       }}
     >
-      <div className="logo">
-        <a href="https://www.tabilab.boun.edu.tr">
-          <img
-            src={logo}
-            alt="App logo"
-            style={{
-              paddingTop: "0",
-              marginTop: "0",
-              position: "fixed",
-              width: "120px",
-              height: "50px",
-            }}
-          />
-        </a>
-      </div>
       <Menu
         theme="dark"
         mode="horizontal"

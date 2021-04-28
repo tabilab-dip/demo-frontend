@@ -4,34 +4,63 @@ import { useTranslation } from "react-i18next";
 
 const { Panel } = Collapse;
 
-const TaskInformation = ({ context }) => {
-  const { t, i18n } = useTranslation();
-
+const TaskInformation = ({ authorSpecs }) => {
+  
   return (
     <Collapse>
       <Panel header="Project Details" key="1">
         <div>
-          <b>Paper: </b>
+          <b>Papers: </b>
           <p>
-            <a href={t(context + ".paper_link")}>
-              {t(context + ".paper_name")}
-            </a>
+            {
+              authorSpecs["paper_names"].map((paper_name, index) => {
+                return (<>
+                        <a href={authorSpecs["paper_handles"][index]}>
+                        {paper_name}
+                        </a>
+                        {authorSpecs["paper_names"].length-1 > index && " ,"}
+                        </>
+                        );})
+              }
           </p>
         </div>
         <div>
           <b>Author(s) of the paper: </b>
-          <p>{t(context + ".paper_authors")}</p>
-        </div>
-        <div>
-          <b>Author(s) of the program: </b>
-          <p>{t(context + ".program_authors")}</p>
-        </div>
-        <div>
-          <b>Program Link: </b>
           <p>
-            <a href={t(context + ".program_link")}>
-              {t(context + ".program_link")}
-            </a>
+            {
+              authorSpecs["paper_authors"].map((paper_author, index) => {
+                return (<>
+                        {paper_author}
+                        {authorSpecs["paper_authors"].length-1 > index && " ,"}
+                        </>
+                        );})
+              }
+          </p>
+        </div>
+        <div>
+          <b>Authors of the program: </b>
+          <p>
+            {
+              authorSpecs["program_authors"].map((program_author, index) => {
+                return (<>
+                        {program_author}
+                        {authorSpecs["program_authors"].length-1 > index && " ,"}
+                        </>
+                        );})
+              }
+          </p>
+        </div>
+        <div>
+          <b>Program Links: </b>
+          <p>
+            {
+              authorSpecs["program_links"].map((program_link, index) => {
+                return (<>
+                        <a href={program_link}>Program {index}</a>
+                        {authorSpecs["program_authors"].length-1 > index && " ,"}
+                        </>
+                        );})
+              }
           </p>
         </div>
       </Panel>

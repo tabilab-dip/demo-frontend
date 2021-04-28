@@ -1,30 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import MorphParser from "./MorphParser";
-import Sentiment from "./Sentiment";
 import GlobalHeader from "./GlobalHeader";
 import Home from "./Home";
+import ToolPanel from "./ToolPanel";
 import "antd/dist/antd.css";
-import About from "./About";
 import SideMenu from "./SideMenu";
-import Ner from "./Ner";
-import DepParser from "./DepParser";
-import Mwe from "./Mwe";
 import { useTranslation } from "react-i18next";
 import { Layout } from "antd";
-import testAutoRender from "./testAutoRender";
-import ToolPanel from "./ToolPanel";
+import UseTool from "./UseTool";
+import { getQuery} from "./utils";
+import About from "./About";
+const url_tools = "http://lvh.me:5000/api/tools/name";
+
 
 const { Content, Footer, Header } = Layout;
 const App = () => {
   const { t, i18n } = useTranslation();
+  const [tools, setTools] = useState([]);
+  const getTools = async () => {
+    let {data: data, status: status} = await getQuery(url_tools);
+    if (status !== 200){
+      return;
+    }
+    data = data.map((tool, index)=>{
+      let o = Object.assign({}, tool);
+      o.key = index;
+      return o;
+    });
+    console.log("Tools are gathered.", data.length);
+    setTools(data);
+  };
+  useEffect(() => {
+        getTools();
+    }, []);
+
   return (
     <Router>
       <Layout>
         <GlobalHeader />
         <Content>
           <Layout className="site-layout-background">
-            <SideMenu />
+            <SideMenu tools={tools}/>
             <Content
               className="site-layout"
               style={{
@@ -37,15 +53,15 @@ const App = () => {
             >
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/morph-parser" component={MorphParser} />
-                <Route path="/sentiment" component={Sentiment} />
-                <Route path="/panel" component={ToolPanel} />
-                <Route path="/about" component={About} />
-                <Route path="/home" component={Home} />
-                <Route path="/ner1" component={Ner} />
-                <Route path="/mwe1" component={Mwe} />
-                <Route path="/test" component={testAutoRender} />
-                <Route path="/dep-parser1" component={DepParser} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/panel" component={ToolPanel} />
+                {tools.map((tool, index) => {
+                  return (
+                    <Route path={"/"+tool.enum} 
+                    component={() => <UseTool tool={tool}/>}
+                     />
+                    );
+                })}
                 <Route path="*" component={Home} />
               </Switch>
               <Footer style={{ textAlign: "center" }}>{t("footer")}</Footer>

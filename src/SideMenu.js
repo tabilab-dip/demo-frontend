@@ -1,11 +1,11 @@
 import React, { Component, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import { useTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 
 const { Sider } = Layout;
 
-const SideMenu = () => {
+const SideMenu = ({tools}) => {
   const { t, i18n } = useTranslation();
   return (
     <Sider
@@ -18,27 +18,25 @@ const SideMenu = () => {
         top: "70px",
         left: 0,
       }}
-    >
+    > 
+    
+    {
+      (i18n.language.slice(0, 2) === "en" || i18n.language.slice(0, 2) === "tr") 
+      &&  
+      <>
       <Menu theme="white" mode="inline">
-        <Menu.Item key="/sentiment" className="local-header-text">
-          <Link to="/sentiment">{t("side_menu.sentiment")}</Link>
-        </Menu.Item>
-        <Menu.Item key="/morph-parser" className="local-header-text">
-          <Link to="/morph-parser">{t("side_menu.mparser")}</Link>
-        </Menu.Item>
-        <Menu.Item key="/ner1" className="local-header-text">
-          <Link to="/ner1">{t("side_menu.ner")}</Link>
-        </Menu.Item>
-        <Menu.Item key="/dep-parser1" className="local-header-text">
-          <Link to="/dep-parser1">{t("side_menu.dparser")}</Link>
-        </Menu.Item>
-        <Menu.Item key="/mwe1" className="local-header-text">
-          <Link to="/mwe1">{t("side_menu.mwe")}</Link>
-        </Menu.Item>
-        <Menu.Item key="/test" className="local-header-text">
-          <Link to="/test">Test</Link>
-        </Menu.Item>
+        {tools.map((tool, index)=>{
+          return (
+            <Menu.Item key={tool.enum} className="local-header-text">
+              <Link to={tool.enum}>
+                {tool["name"]}
+              </Link>
+            </Menu.Item>
+          );
+        })}    
       </Menu>
+      </>
+      }
     </Sider>
   );
 };
