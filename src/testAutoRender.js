@@ -98,12 +98,7 @@ const TestAutoRender = () => {
   
   return (
     <div>
-      <p>
-      1- Repositories can get really big; should we have separate bracnh for each project with name dip_specs so that cloning will be quicker. As an example: for morphological parser it takes ~6 seconds to clone the final commit.
-      <br/>
-
-
-      </p>
+      
         <Form
     schema={schema}
     formData={formData}

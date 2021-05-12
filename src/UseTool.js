@@ -10,8 +10,8 @@ import { docs, colls } from "./data_test_brat";
 
 import "antd/dist/antd.css";
 
-const url_get_ui = "http://www.lvh.me:5000/api/tool/ui/";
-const url_post_run = "http://www.lvh.me:5000/api/tool/run/";
+const url_get_ui = "http://lvh.me:5000/api/tool/ui/";
+const url_post_run = "http://lvh.me:5000/api/tool/run/";
 
 const Form = withTheme(AntDTheme);
 

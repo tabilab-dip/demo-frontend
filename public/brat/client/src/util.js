@@ -607,9 +607,9 @@ var Util = (function(window, undefined) {
       fontNotifyList = [dispatcher];
 
       webFontURLs = webFontURLs || [
-        'http://localhost:3000/brat/static/fonts/Astloch-Bold.ttf',
-        'http://localhost:3000/brat/static/fonts/PT_Sans-Caption-Web-Regular.ttf',
-        'http://localhost:3000/brat/static/fonts/Liberation_Sans-Regular.ttf'
+        'http://lvh.me:3000/brat/static/fonts/Astloch-Bold.ttf',
+        'http://lvh.me:3000/brat/static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        'http://lvh.me:3000/brat/static/fonts/Liberation_Sans-Regular.ttf'
       ];
 
       var families = [];

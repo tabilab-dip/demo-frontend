@@ -10,8 +10,6 @@ const url_update = "http://lvh.me:5000/api/tool/"
 const ManageTools = ({isAuth, setIsAuth}) => {
   const [tools, setTools] = useState([]);
   const getTools = async () => {
-    console.log("GTOOLS");
-
     let {data: tools, status: status} = await getQuery(url_tools);
     // set keys:
     tools = tools.map((tool, index)=>{
@@ -19,12 +17,10 @@ const ManageTools = ({isAuth, setIsAuth}) => {
       o.key = index;
       return o;
     });
-    console.log("tools are updated");
     setTools(tools);
   };
 
   useEffect(() => {
-    console.log("mt UF");
     getTools();
   }, []);
 
@@ -88,41 +84,19 @@ const EditableTable = ({rowData, callbackFetch}) => {
   const isEditing = (record) => record.key === editingKey;
 
   useEffect(() => {
-    console.log("useEFfect");
     setData(rowData);
   }, [rowData]);
 
   const edit = (record) => {
     const key = record.key;
-    console.log(key);
     const index = data.findIndex((item) => key === item.key);
     const item = data[index];
-    console.log(item);
     setCurToolFields(item);
     setShowModal(true);
   };  
 
   const cancel = () => {
     setEditingKey('');
-  };
-
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        let {data: response, status: status} = await putQuery(url_update+data[index].enum, newData[index]);
-        if (status === 200){
-          setData(newData);
-        }
-        setEditingKey('');
-      }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
   };
 
   const delTool = async (key) => {

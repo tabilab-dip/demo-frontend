@@ -1,5 +1,5 @@
 // TODO: change this
-var bratLocation = "http://localhost:3000/brat";
+var bratLocation = "http://lvh.me:3000/brat";
 head.js(
   // External libraries
   bratLocation + "/client/lib/jquery.min.js",
