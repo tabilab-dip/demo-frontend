@@ -64,7 +64,7 @@ class Brat extends React.Component {
     this.dispatcher.post("collectionLoaded", [
       { collection: null, ...collData },
     ]);
-    this.dispatcher.post("requestRenderData", docData);
+    this.dispatcher.post("requestRenderData", [docData]);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
