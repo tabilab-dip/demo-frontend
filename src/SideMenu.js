@@ -1,12 +1,12 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import { useTranslation, withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const { Sider } = Layout;
 
 const SideMenu = ({tools}) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   return (
     <Sider
       className="site-layout-background"

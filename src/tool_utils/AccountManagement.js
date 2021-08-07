@@ -13,11 +13,10 @@ const url_delete_user = "http://lvh.me:5000/api/user/";
 
 const AccountManagement = ({isAuth, setIsAuth}) => {
     const [user, setUser] = useState({});
-    const [update, setUpdate] = useState(false);
     const [users, setUsers] = useState([]);
 
     const getUsers = async () => {
-        let {data: data, status: status} = await getQuery(url_get_users);
+        let {data, status} = await getQuery(url_get_users);
         if (status !== 200){
           return;
         }
@@ -30,7 +29,7 @@ const AccountManagement = ({isAuth, setIsAuth}) => {
     };
 
     const getUser = async () => {
-        let {data: data, status: status} = await getQuery(url_get_user);
+        let {data, status} = await getQuery(url_get_user);
         if (status === 401) {
             setIsAuth(false);
             return;
@@ -39,17 +38,16 @@ const AccountManagement = ({isAuth, setIsAuth}) => {
     };
 
     useEffect(() => {
-        console.log("UF");
         getUser();
         getUsers();
         
-    }, [update]);
+    }, []);
 
 
     return (
     <div>
         { 
-        (Object.keys(user).length!=0)
+        (Object.keys(user).length !== 0)
             ? (
             <>  
                 <hr/>
@@ -215,7 +213,7 @@ const UpdateCurUser = ({user, getUserCallback}) => {
         </Button>
       </Form.Item>
     </Form>
-    { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse.data}></Result></pre>}
+    { Object.keys(serverResponse).length !== 0 && <pre><Result {...serverResponse.data}></Result></pre>}
     </>
     );
 };
@@ -296,7 +294,7 @@ const UsersList = ({users, callbackFeth}) => {
         const index = newData.findIndex((item) => key === item.key);
         if (index > -1) {
             newData.splice(index, 1);
-            let {data: response, status: status} = await deleteQuery(url_delete_user+data[index].username);
+            let {status} = await deleteQuery(url_delete_user+data[index].username);
             if (status === 200){
                 callbackFeth();
             }

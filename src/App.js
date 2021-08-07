@@ -13,12 +13,12 @@ import About from "./About";
 const url_tools = "http://lvh.me:5000/api/tools/name";
 
 
-const { Content, Footer, Header } = Layout;
+const { Content, Footer } = Layout;
 const App = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [tools, setTools] = useState([]);
   const getTools = async () => {
-    let {data: data, status: status} = await getQuery(url_tools);
+    let {data, status} = await getQuery(url_tools);
     if (status !== 200){
       return;
     }

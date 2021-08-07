@@ -3,14 +3,13 @@ import TaskDefinition from "./TaskDefinition";
 import TaskInformation from "./TaskInformation";
 import ErrorBoundary from "./ErrorBoundary";
 import Brat from "./Brat";
-import {getQuery, postQuery} from "./utils";
+import { postQuery} from "./utils";
 import { withTheme } from '@rjsf/core';
 import { Theme as AntDTheme } from '@rjsf/antd';
-import { docs, colls } from "./data_test_brat";
+import {  colls } from "./data_test_brat";
 
 import "antd/dist/antd.css";
 
-const url_get_ui = "http://lvh.me:5000/api/tool/ui/";
 const url_post_run = "http://lvh.me:5000/api/tool/run/";
 
 const Form = withTheme(AntDTheme);
@@ -28,9 +27,7 @@ const UseTool = ({tool}) => {
     
     //
     const handleSubmit = async () => {
-        console.log(JSON.stringify(formData));
         let response = await postQuery(url_post_run+tool.enum, formData);
-        console.log(response.data);
         setAnswer(response.data);
     };
 
@@ -38,7 +35,7 @@ const UseTool = ({tool}) => {
     return (
         <div>
         <ErrorBoundary>
-        {(Object.keys(tool).length!=0) 
+        {(Object.keys(tool).length !== 0) 
         &&
         <>
             <TaskDefinition authorSpecs={tool["author_json"]} />
@@ -53,12 +50,8 @@ const UseTool = ({tool}) => {
             />
         </>
         }
-        <Brat doc={docs[0]} coll={colls[0]} />
-        {/* <Brat doc={{}} coll={{}} /> */}
-        
-        {/* <OutputBrat standoff={answer.brat_standoff}/> */}
-        {/* {(Object.keys(answer).length!=0)  && <OutputBrat standoff={answer.brat_standoff}/>} */}
-        {(Object.keys(answer).length!=0)  && <OutputText text={answer.text}/>}
+        {("brat_standoff" in answer)  && <OutputBrat standoff={answer.brat_standoff} toolName={tool.enum}/>}
+        {("text" in answer)  && <OutputText text={answer.text} />}
         </ErrorBoundary>
         </div>
     );
@@ -86,11 +79,13 @@ const OutputText = ({text}) => {
         </>);
 };
 
-const OutputBrat = ({standoff}) => {
+const OutputBrat = ({standoff, toolName}) => {
+
     return (
         <>
-            <Brat doc={docs[0]} coll={{text:"Brat test", ...colls[0]}} />
-            {/* <Brat doc={docs[0]} coll={colls[0]} /> */}
+            {/* <Brat doc={docs[0]} coll={{text:"Brat test", ...colls[0]}} /> */}
+            <Brat doc={standoff} iid={toolName}/>
+            
         </>
     );
 };

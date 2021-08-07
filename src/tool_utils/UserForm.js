@@ -6,15 +6,13 @@ const url_register = "http://lvh.me:5000/api/user/register"
 const url_tools = "http://lvh.me:5000/api/tools"
 const url_update_user = "http://lvh.me:5000/api/user/update/";
 
-const { TextArea } = Input;
-
 const UserForm = ({createNew, user, callbackFeth, setShowModal}) => {
   const [form] = Form.useForm();
   const [tools, setTools] = useState([]);
   const [serverResponse, setServerResponse] = useState({});
 
   const getTools = async () => {
-    let {data: tools, status: status} = await getQuery(url_tools);
+    let {data: tools} = await getQuery(url_tools);
     setTools(tools);
   };
 
@@ -27,25 +25,26 @@ const UserForm = ({createNew, user, callbackFeth, setShowModal}) => {
     let response = {};
     setServerResponse({});
     if (typeof values.username === 'undefined' 
-        || values.email === 'undefined' 
-        || values.password === 'undefined' 
-        || values.roles === 'undefined'){
+        || typeof values.email === 'undefined' 
+        || typeof values.password === 'undefined' 
+        || typeof values.roles === 'undefined'){
       response = {data: {title: "You need to specify all values"}};
+      setServerResponse(response);
     }
-    else if (values.roles.length == 0){
+    else if (values.roles.length === 0){
       response = {data: {title: "You need to select at least one role"}};
-
+      setServerResponse(response);
     }
     else{
       if (createNew){
         let response = await postQuery(url_register, values);        
-        if (response.status == 200){
+        if (response.status === 200){
           callbackFeth();
         }
         setServerResponse(response);
       }else{
         let response = await putQuery(url_update_user + user.username, values);        
-        if (response.status == 200){
+        if (response.status === 200){
           callbackFeth();
           setShowModal(false);
           setServerResponse({});
@@ -125,7 +124,7 @@ const UserForm = ({createNew, user, callbackFeth, setShowModal}) => {
         </Form.Item>
         
       </Form>
-      { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse.data}></Result></pre>}
+      { Object.keys(serverResponse).length !== 0 && <pre><Result {...serverResponse.data}></Result></pre>}
 
     </>
   );

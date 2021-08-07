@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Result, Form, Input, Button} from 'antd';
 import { postQuery } from "../utils";
 
 const url = "http://lvh.me:5000/api/tool";
-const url_auth = "http://lvh.me:5000/api/user/isauth";
-
 const { TextArea } = Input;
 
 
 const AddTools = ({isAuth, setIsAuth}) => {
   const [form] = Form.useForm();
-  const [formLayout, setFormLayout] = useState('horizontal');
   const [wait, setWait] = useState(false);
   const [serverResponse, setServerResponse] = useState({});
   
@@ -27,11 +24,10 @@ const AddTools = ({isAuth, setIsAuth}) => {
       
     }
     else{
-      console.log(values);
       setWait(true);
       response = await postQuery(url, values);
       setWait(false);
-      let {data, status} = response;
+      let {status} = response;
       if (status===200){
         form.resetFields();
       }
@@ -91,7 +87,7 @@ const AddTools = ({isAuth, setIsAuth}) => {
         <b>
         Below you can enter the author_specs.json, if you enter it will overwrite the one in the above repository
         <br/>
-        See an example at <a href="https://github.com/tabilab-dip/morphological_parser_sak/blob/main/dip_specs/author_specs.json" target="_blank"> this link</a>
+        See an example at <a href="https://github.com/tabilab-dip/morphological_parser_sak/blob/main/dip_specs/author_specs.json" target="_blank" rel="noreferrer"> this link</a>
         </b>
         <Form.Item label="author_specs.json" name="author_json" >
           <TextArea rows={6} />
@@ -102,7 +98,7 @@ const AddTools = ({isAuth, setIsAuth}) => {
         
       </Form>
       {wait && <Result {...{title: "Wait please"}}></Result>}
-      { Object.keys(serverResponse).length!=0 && <pre><Result {...serverResponse.data}></Result></pre>}
+      { Object.keys(serverResponse).length !== 0 && <pre><Result {...serverResponse.data}></Result></pre>}
     </>
   );
 };

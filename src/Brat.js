@@ -10,6 +10,7 @@ class Brat extends React.Component {
     super(props);
     this.updateImage = this.updateImage.bind(this);
   }
+  
   componentDidMount() {
     const head_script = document.createElement("script");
     head_script.type = "text/javascript";
@@ -51,19 +52,19 @@ class Brat extends React.Component {
 
     let collData = this.props.coll || {};
     let docData = this.props.doc || {};
-
     if (typeof this.dispatcher === "undefined") {
       this.dispatcher = window.Util.embed(
-        "embedding-brat",
+        "embedding-brat_" + this.props.iid,
         collData,
         docData,
         window.webFontURLs
       );
+
     }
     this.dispatcher.post("collectionLoaded", [
       { collection: null, ...collData },
     ]);
-    this.dispatcher.post("requestRenderData", [docData]);
+    this.dispatcher.post("requestRenderData", docData);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -71,7 +72,7 @@ class Brat extends React.Component {
   }
 
   render() {
-    return <div id="embedding-brat"></div>;
+    return <div id={"embedding-brat_" + this.props.iid}></div>;
   }
 }
 

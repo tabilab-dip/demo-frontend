@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Layout, Tabs, Button } from "antd";
+import { Tabs, Button } from "antd";
 import AddTools from "./tool_utils/AddTools";
 import ManageTools from "./tool_utils/ManageTools";
 import LoginPanel from "./tool_utils/LoginPanel";
@@ -11,32 +11,27 @@ const { TabPane } = Tabs;
 const url = "http://lvh.me:5000/api/user/isauth";
 const url_get_logout = "http://lvh.me:5000/api/user/logout";
 
-
-/*
-In each component: after http requests:
-  - if 401 returned, setIsAuth false
-  - if logged-in successfully, setIsAuth true 
-*/
-
 const ToolPanel = () => {
   const [isAuth, setIsAuth] = useState(false);
 
   const logOut = async () => {
-        let {data: data, status: status} = await getQuery(url_get_logout);
-        if (status == 200){
+        let {status} = await getQuery(url_get_logout);
+        if (status === 200){
             setIsAuth(false);
         }
     };
 
-  useEffect(async () => {
-    console.log("sending", isAuth);
-    let response = await getQuery(url);
-    let {data, status} = response;
-    console.log("as", status);
-    if (status===200){
-      setIsAuth(true);
+  useEffect(() => {
+    (async () => {
+      let response = await getQuery(url);
+      let {status} = response;
+      if (status===200){
+        setIsAuth(true);
     }
+    })()
   }, []);
+
+ 
 
   return (
     <>

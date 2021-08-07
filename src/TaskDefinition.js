@@ -1,11 +1,11 @@
 import React from "react";
 import { Collapse } from "antd";
-import { useTranslation, withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const { Panel } = Collapse;
 
 const TaskDefinition = ({ authorSpecs }) => {
-  const { t, i18n } = useTranslation();
+  const {  i18n } = useTranslation();
 
   return (
     <div>

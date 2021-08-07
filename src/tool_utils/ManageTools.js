@@ -1,6 +1,6 @@
 import React,  { useState, useEffect } from "react";
 import {Button, Modal, Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
-import { getQuery, putQuery, deleteQuery } from "../utils";
+import { getQuery, deleteQuery } from "../utils";
 import UpdateTool from "./UpdateTool";
 
 const url_tools = "http://lvh.me:5000/api/tools"
@@ -10,7 +10,7 @@ const url_update = "http://lvh.me:5000/api/tool/"
 const ManageTools = ({isAuth, setIsAuth}) => {
   const [tools, setTools] = useState([]);
   const getTools = async () => {
-    let {data: tools, status: status} = await getQuery(url_tools);
+    let {data: tools} = await getQuery(url_tools);
     // set keys:
     tools = tools.map((tool, index)=>{
       let o = Object.assign({}, tool);
@@ -29,7 +29,7 @@ const ManageTools = ({isAuth, setIsAuth}) => {
   <Button  onClick={getTools}>
     Refresh
   </Button>
-  {tools.length!=0 && <EditableTable rowData={tools} callbackFetch={getTools}></EditableTable>}
+  {tools.length !== 0 && <EditableTable rowData={tools} callbackFetch={getTools}></EditableTable>}
   </>
   );
 };
@@ -101,19 +101,17 @@ const EditableTable = ({rowData, callbackFetch}) => {
 
   const delTool = async (key) => {
     try {
-      const row = await form.validateFields();
       const newData = [...data];
       const index = newData.findIndex((item) => key === item.key);
       if (index > -1) {
         newData.splice(index, 1);
-        let {data: response, status: status} = await deleteQuery(url_update+data[index].enum);
+        let {status} = await deleteQuery(url_update+data[index].enum);
         if (status === 200){
           setData(newData);
         }
         setEditingKey('');
       }
     } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
     }
   };
 
@@ -164,7 +162,6 @@ const EditableTable = ({rowData, callbackFetch}) => {
       title: 'Operation',
       dataIndex: 'operation',
       render: (_, record) => {
-        const editable = isEditing(record);
         return (
           <span>
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{
